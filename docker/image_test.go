@@ -3,7 +3,7 @@ package docker
 import (
 	"testing"
 
-	"github.com/wemanity-belgium/hyperclair/xerrors"
+	"github.com/murat1985/hyperclair/xerrors"
 )
 
 var imageNameTests = []struct {
@@ -12,14 +12,14 @@ var imageNameTests = []struct {
 	insecure bool
 }{
 	{"jgsqware/ubuntu-git", hubURI + "/jgsqware/ubuntu-git:latest", false},
-	{"wemanity-belgium/registry-backup", hubURI + "/wemanity-belgium/registry-backup:latest", false},
-	{"wemanity-belgium/alpine:latest", hubURI + "/wemanity-belgium/alpine:latest", false},
+	{"murat1985/registry-backup", hubURI + "/murat1985/registry-backup:latest", false},
+	{"murat1985/alpine:latest", hubURI + "/murat1985/alpine:latest", false},
 	{"register.com/alpine", "http://register.com/v2/alpine:latest", true},
-	{"register.com/wemanity-belgium/alpine", "http://register.com/v2/wemanity-belgium/alpine:latest", true},
-	{"register.com/wemanity-belgium/alpine:latest", "http://register.com/v2/wemanity-belgium/alpine:latest", true},
+	{"register.com/murat1985/alpine", "http://register.com/v2/murat1985/alpine:latest", true},
+	{"register.com/murat1985/alpine:latest", "http://register.com/v2/murat1985/alpine:latest", true},
 	{"register.com:5080/alpine", "http://register.com:5080/v2/alpine:latest", true},
-	{"register.com:5080/wemanity-belgium/alpine", "http://register.com:5080/v2/wemanity-belgium/alpine:latest", true},
-	{"register.com:5080/wemanity-belgium/alpine:latest", "http://register.com:5080/v2/wemanity-belgium/alpine:latest", true},
+	{"register.com:5080/murat1985/alpine", "http://register.com:5080/v2/murat1985/alpine:latest", true},
+	{"register.com:5080/murat1985/alpine:latest", "http://register.com:5080/v2/murat1985/alpine:latest", true},
 	{"registry:5000/google/cadvisor", "http://registry:5000/v2/google/cadvisor:latest", true},
 }
 

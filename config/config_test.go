@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/spf13/viper"
-	"github.com/wemanity-belgium/hyperclair/test"
+	"github.com/murat1985/hyperclair/test"
 
 	"gopkg.in/yaml.v2"
 )

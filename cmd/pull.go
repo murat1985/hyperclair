@@ -21,8 +21,8 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"github.com/wemanity-belgium/hyperclair/docker"
-	"github.com/wemanity-belgium/hyperclair/xerrors"
+	"github.com/murat1985/hyperclair/docker"
+	"github.com/murat1985/hyperclair/xerrors"
 )
 
 const pullTplt = `

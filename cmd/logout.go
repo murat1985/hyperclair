@@ -6,9 +6,9 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"github.com/wemanity-belgium/hyperclair/config"
-	"github.com/wemanity-belgium/hyperclair/docker"
-	"github.com/wemanity-belgium/hyperclair/xerrors"
+	"github.com/murat1985/hyperclair/config"
+	"github.com/murat1985/hyperclair/docker"
+	"github.com/murat1985/hyperclair/xerrors"
 )
 
 var logoutCmd = &cobra.Command{

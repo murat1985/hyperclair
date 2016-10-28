@@ -15,9 +15,9 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/spf13/viper"
-	"github.com/wemanity-belgium/hyperclair/clair"
-	"github.com/wemanity-belgium/hyperclair/xerrors"
-	"github.com/wemanity-belgium/hyperclair/xstrings"
+	"github.com/murat1985/hyperclair/clair"
+	"github.com/murat1985/hyperclair/xerrors"
+	"github.com/murat1985/hyperclair/xstrings"
 )
 
 var errNoInterfaceProvided = errors.New("could not load configuration: no interface provided")

@@ -12,9 +12,9 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/spf13/viper"
-	"github.com/wemanity-belgium/hyperclair/database"
-	"github.com/wemanity-belgium/hyperclair/docker"
-	"github.com/wemanity-belgium/hyperclair/docker/httpclient"
+	"github.com/murat1985/hyperclair/database"
+	"github.com/murat1985/hyperclair/docker"
+	"github.com/murat1985/hyperclair/docker/httpclient"
 )
 
 //Serve run a local server with the fileserver and the reverse proxy

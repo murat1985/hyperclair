@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/spf13/viper"
-	"github.com/wemanity-belgium/hyperclair/xerrors"
+	"github.com/murat1985/hyperclair/xerrors"
 )
 
 //Image represent Image Manifest from Docker image, including the registry URL
@@ -37,15 +37,15 @@ func TmpLocal() string {
 // Parse is used to parse a docker image command
 //
 //Example:
-//"register.com:5080/wemanity-belgium/alpine"
-//"register.com:5080/wemanity-belgium/alpine:latest"
+//"register.com:5080/murat1985/alpine"
+//"register.com:5080/murat1985/alpine:latest"
 //"register.com:5080/alpine"
-//"register.com/wemanity-belgium/alpine"
+//"register.com/murat1985/alpine"
 //"register.com/alpine"
-//"register.com/wemanity-belgium/alpine:latest"
+//"register.com/murat1985/alpine:latest"
 //"alpine"
-//"wemanity-belgium/alpine"
-//"wemanity-belgium/alpine:latest"
+//"murat1985/alpine"
+//"murat1985/alpine:latest"
 func Parse(image string, insecure bool) (Image, error) {
 	imageRegex := regexp.MustCompile(dockerImageRegex)
 

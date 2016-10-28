@@ -10,9 +10,9 @@ import (
 	"strings"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/wemanity-belgium/hyperclair/config"
-	"github.com/wemanity-belgium/hyperclair/docker/httpclient"
-	"github.com/wemanity-belgium/hyperclair/xerrors"
+	"github.com/murat1985/hyperclair/config"
+	"github.com/murat1985/hyperclair/docker/httpclient"
+	"github.com/murat1985/hyperclair/xerrors"
 )
 
 type token struct {

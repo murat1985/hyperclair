@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/wemanity-belgium/hyperclair/docker/httpclient"
-	"github.com/wemanity-belgium/hyperclair/xerrors"
+	"github.com/murat1985/hyperclair/docker/httpclient"
+	"github.com/murat1985/hyperclair/xerrors"
 )
 
 //Pull Image from Registry or Hub depending on image name

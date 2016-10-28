@@ -3,8 +3,8 @@ package docker
 import (
 	"github.com/Sirupsen/logrus"
 	"github.com/coreos/clair/api/v1"
-	"github.com/wemanity-belgium/hyperclair/clair"
-	"github.com/wemanity-belgium/hyperclair/xstrings"
+	"github.com/murat1985/hyperclair/clair"
+	"github.com/murat1985/hyperclair/xstrings"
 )
 
 //Analyse return Clair Image analysis
