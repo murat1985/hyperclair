@@ -14,10 +14,10 @@ import (
 	"gopkg.in/yaml.v2"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/spf13/viper"
 	"github.com/murat1985/hyperclair/clair"
 	"github.com/murat1985/hyperclair/xerrors"
 	"github.com/murat1985/hyperclair/xstrings"
+	"github.com/spf13/viper"
 )
 
 var errNoInterfaceProvided = errors.New("could not load configuration: no interface provided")
@@ -185,24 +185,45 @@ func AddLogin(registry string, login Login) error {
 
 	return nil
 }
-func GetLogin(registry string) (Login, error) {
-	if _, err := os.Stat(HyperclairConfig()); err == nil {
-		var logins loginMapping
 
-		if err := readConfigFile(&logins, HyperclairConfig()); err != nil {
-			return Login{}, fmt.Errorf("reading hyperclair file: %v", err)
+func GetEnvLogin() (Login, error) {
+	username := os.Getenv("DOCKER_REGISTRY_USER")
+	password := os.Getenv("DOCKER_REGISTRY_PASS")
+	if len(username) > 0 && len(password) > 0 {
+		login := Login{
+			Username: username,
+			Password: password,
 		}
-
-		if login, present := logins[registry]; present {
-			d, err := base64.StdEncoding.DecodeString(login.Password)
-			if err != nil {
-				return Login{}, fmt.Errorf("decoding password: %v", err)
-			}
-			login.Password = string(d)
-			return login, nil
-		}
+		return login, nil
+	} else {
+		err_message := "Docker credentials are not found in the environment, trying .hyperclair/config.json"
+		return Login{}, fmt.Errorf(err_message)
 	}
-	return Login{}, ErrLoginNotFound
+}
+
+func GetLogin(registry string) (Login, error) {
+	login, err := GetEnvLogin()
+	if err != nil {
+		if _, err := os.Stat(HyperclairConfig()); err == nil {
+			var logins loginMapping
+
+			if err := readConfigFile(&logins, HyperclairConfig()); err != nil {
+				return Login{}, fmt.Errorf("reading hyperclair file: %v", err)
+			}
+
+			if login, present := logins[registry]; present {
+				d, err := base64.StdEncoding.DecodeString(login.Password)
+				if err != nil {
+					return Login{}, fmt.Errorf("decoding password: %v", err)
+				}
+				login.Password = string(d)
+				return login, nil
+			}
+		}
+		return Login{}, ErrLoginNotFound
+	} else {
+		return login, nil
+	}
 }
 
 func RemoveLogin(registry string) (bool, error) {
