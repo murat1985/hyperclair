@@ -20,7 +20,7 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"github.com/murat1985/hyperclair/config"
+	"github.com/zendesk/hyperclair/config"
 )
 
 var cfgFile string
