@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/spf13/viper"
 	"github.com/murat1985/hyperclair/xerrors"
+	"github.com/spf13/viper"
 )
 
 //Image represent Image Manifest from Docker image, including the registry URL
@@ -24,7 +24,7 @@ type Layer struct {
 	History string
 }
 
-const dockerImageRegex = "^(?:([^/]+)/)?(?:([^/]+)/)?([^@:/]+)(?:[@:](.+))?"
+const dockerImageRegex = "^(?:([^/]+)/)?(?:(.+)/)*([^@:/]+)(?:[@:](.+))?"
 const DockerHub = "registry-1.docker.io"
 const hubURI = "https://" + DockerHub + "/v2"
 
