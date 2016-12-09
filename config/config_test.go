@@ -155,6 +155,21 @@ func TestReadConfigFile(t *testing.T) {
 	}
 }
 
+func TestReadEnvLogin(t *testing.T) {
+	sample_login := Login{
+		Username: "foo",
+		Password: "bar",
+	}
+	os.Setenv("DOCKER_REGISTRY_USER", "foo")
+	os.Setenv("DOCKER_REGISTRY_PASS", "bar")
+	if login, err := GetEnvLogin(); err != nil {
+		t.Errorf("Environment DOCKER_REGSITRY_USER and DOCKER_REGISTRY_PASS not set - Config.GetEnvLogin")
+	}
+	if login != sample_login {
+		t.Errof("DOCKER_REGISTRY_PASS and USER do not match - check Config.GetEnvLogin")
+	}
+}
+
 func TestWriteConfigFile(t *testing.T) {
 	logins := loginMapping{}
 	logins["docker.io"] = Login{Username: "johndoe", Password: "$2a$05$Qe4TTO8HMmOht"}

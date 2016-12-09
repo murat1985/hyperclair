@@ -17,6 +17,7 @@ var imageNameTests = []struct {
 	{"register.com/alpine", "http://register.com/v2/alpine:latest", true},
 	{"register.com/zendesk/alpine", "http://register.com/v2/zendesk/alpine:latest", true},
 	{"register.com/zendesk/alpine:latest", "http://register.com/v2/zendesk/alpine:latest", true},
+	{"register.com/zendesk/path/to/alpine:latest", "http://register.com/v2/zendesk/path/to/alpine:latest", true},
 	{"register.com:5080/alpine", "http://register.com:5080/v2/alpine:latest", true},
 	{"register.com:5080/zendesk/alpine", "http://register.com:5080/v2/zendesk/alpine:latest", true},
 	{"register.com:5080/zendesk/alpine:latest", "http://register.com:5080/v2/zendesk/alpine:latest", true},
