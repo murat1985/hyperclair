@@ -6,10 +6,10 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/coreos/clair/api/v1"
-	"github.com/murat1985/hyperclair/clair"
-	"github.com/murat1985/hyperclair/config"
-	"github.com/murat1985/hyperclair/database"
-	"github.com/murat1985/hyperclair/xstrings"
+	"github.com/zendesk/hyperclair/clair"
+	"github.com/zendesk/hyperclair/config"
+	"github.com/zendesk/hyperclair/database"
+	"github.com/zendesk/hyperclair/xstrings"
 )
 
 //Push image to Clair for analysis

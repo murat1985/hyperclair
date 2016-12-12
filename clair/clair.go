@@ -8,7 +8,7 @@ import (
 
 	"github.com/coreos/clair/api/v1"
 	"github.com/spf13/viper"
-	"github.com/murat1985/hyperclair/xstrings"
+	"github.com/zendesk/hyperclair/xstrings"
 )
 
 var uri string

@@ -3,7 +3,7 @@ package docker
 import (
 	"testing"
 
-	"github.com/murat1985/hyperclair/xerrors"
+	"github.com/zendesk/hyperclair/xerrors"
 )
 
 var imageNameTests = []struct {
@@ -12,14 +12,15 @@ var imageNameTests = []struct {
 	insecure bool
 }{
 	{"jgsqware/ubuntu-git", hubURI + "/jgsqware/ubuntu-git:latest", false},
-	{"murat1985/registry-backup", hubURI + "/murat1985/registry-backup:latest", false},
-	{"murat1985/alpine:latest", hubURI + "/murat1985/alpine:latest", false},
+	{"zendesk/registry-backup", hubURI + "/zendesk/registry-backup:latest", false},
+	{"zendesk/alpine:latest", hubURI + "/zendesk/alpine:latest", false},
 	{"register.com/alpine", "http://register.com/v2/alpine:latest", true},
-	{"register.com/murat1985/alpine", "http://register.com/v2/murat1985/alpine:latest", true},
-	{"register.com/murat1985/alpine:latest", "http://register.com/v2/murat1985/alpine:latest", true},
+	{"register.com/zendesk/alpine", "http://register.com/v2/zendesk/alpine:latest", true},
+	{"register.com/zendesk/alpine:latest", "http://register.com/v2/zendesk/alpine:latest", true},
+	{"register.com/zendesk/path/to/alpine:latest", "http://register.com/v2/zendesk/path/to/alpine:latest", true},
 	{"register.com:5080/alpine", "http://register.com:5080/v2/alpine:latest", true},
-	{"register.com:5080/murat1985/alpine", "http://register.com:5080/v2/murat1985/alpine:latest", true},
-	{"register.com:5080/murat1985/alpine:latest", "http://register.com:5080/v2/murat1985/alpine:latest", true},
+	{"register.com:5080/zendesk/alpine", "http://register.com:5080/v2/zendesk/alpine:latest", true},
+	{"register.com:5080/zendesk/alpine:latest", "http://register.com:5080/v2/zendesk/alpine:latest", true},
 	{"registry:5000/google/cadvisor", "http://registry:5000/v2/google/cadvisor:latest", true},
 }
 

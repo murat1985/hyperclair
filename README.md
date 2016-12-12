@@ -1,4 +1,15 @@
+# Remarks
 
+We have forked this repository and using it until transition to [clairctl](https://github.com/jgsqware/clairctl). 
+
+This fork features following functionality:
+- DOCKER_REGISTRY_USER and DOCKER_REGISTRY_PASS to authenticate against docker registry
+- Basic authentication against ECR
+- HTTPS registry support through Insecure flag (flag allows to choose between HTTP/HTTPS).
+- Fixed regular expression for docker image. Now it is possible to have image like: path1/path2/../myimagename
+
+For further information please refer to the conversation 
+with authors of hyperclair in this PR https://github.com/wemanity-belgium/hyperclair/pull/90 
 
 # hyperclair
 
@@ -27,10 +38,8 @@ hyperclair is tool to make the link between the Docker Registry and the CoreOS C
 
 # Installation
 
-```bash
-# sudo curl -L -o /usr/local/bin/hyperclair  https://github.com/wemanity-belgium/hyperclair/releases/download/0.5.0/hyperclair-{OS}-{ARCH}
-sudo curl -L -o /usr/local/bin/hyperclair  https://github.com/wemanity-belgium/hyperclair/releases/download/0.5.0/hyperclair-linux-amd64
-sudo chmod +x /usr/local/bin/hyperclair
+```
+go get github.com/zendesk/hyperclair
 ```
 
 # Usage
@@ -48,7 +57,16 @@ See [Sample](http://htmlpreview.github.io/?https://github.com/wemanity-belgium/h
 
 hyperclair can be used for Docker Hub and self-hosted Registry
 
-# Command
+# Commands
+
+To avoid `login` you can use environment variables
+
+- `DOCKER_REGISTRY_USER`
+- `DOCKER_REGISTRY_PASS`
+
+if there are no such environment variables, `login` would be require
+and hyperclair would lookg into ~/.hyperclair/config.json for
+authentication material.
 
 ```
 Analyse your docker image with Clair, directly from your registry.
@@ -68,6 +86,7 @@ Available Commands:
 
 Flags:
       --config string      config file (default is ./.hyperclair.yml)
+      --insecure-registry  Use http instead of https if supplied
       --log-level string   log level [Panic,Fatal,Error,Warn,Info,Debug]
 
 Use "hyperclair [command] --help" for more information about a command.
@@ -84,6 +103,9 @@ clair:
   report:
     path: ./reports
     format: html
+hyperclair:
+  interface: eth0
+  port: 60600
 ```
 
 # Remarks

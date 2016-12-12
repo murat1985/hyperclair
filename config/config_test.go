@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/spf13/viper"
-	"github.com/murat1985/hyperclair/test"
+	"github.com/zendesk/hyperclair/test"
 
 	"gopkg.in/yaml.v2"
 )
@@ -152,6 +152,21 @@ func TestReadConfigFile(t *testing.T) {
 		if l := len(logins); l != ld.out {
 			t.Errorf("readConfigFile(&logins,%q) => %v logins, want %v", tmpfile, l, ld.out)
 		}
+	}
+}
+
+func TestReadEnvLogin(t *testing.T) {
+	sample_login := Login{
+		Username: "foo",
+		Password: "bar",
+	}
+	os.Setenv("DOCKER_REGISTRY_USER", "foo")
+	os.Setenv("DOCKER_REGISTRY_PASS", "bar")
+	if login, err := GetEnvLogin(); err != nil {
+		t.Errorf("Environment DOCKER_REGSITRY_USER and DOCKER_REGISTRY_PASS not set - Config.GetEnvLogin")
+	}
+	if login != sample_login {
+		t.Errof("DOCKER_REGISTRY_PASS and USER do not match - check Config.GetEnvLogin")
 	}
 }
 

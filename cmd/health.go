@@ -7,8 +7,8 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"github.com/murat1985/hyperclair/clair"
-	"github.com/murat1985/hyperclair/xerrors"
+	"github.com/zendesk/hyperclair/clair"
+	"github.com/zendesk/hyperclair/xerrors"
 )
 
 const healthTplt = `

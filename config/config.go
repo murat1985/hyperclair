@@ -14,9 +14,9 @@ import (
 	"gopkg.in/yaml.v2"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/murat1985/hyperclair/clair"
-	"github.com/murat1985/hyperclair/xerrors"
-	"github.com/murat1985/hyperclair/xstrings"
+	"github.com/zendesk/hyperclair/clair"
+	"github.com/zendesk/hyperclair/xerrors"
+	"github.com/zendesk/hyperclair/xstrings"
 	"github.com/spf13/viper"
 )
 
