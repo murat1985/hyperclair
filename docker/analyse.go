@@ -9,11 +9,23 @@ import (
 
 //Analyse return Clair Image analysis
 func Analyse(image Image) clair.ImageAnalysis {
-	c := len(image.FsLayers)
 	res := []v1.LayerEnvelope{}
 
-	for i := range image.FsLayers {
-		l := image.FsLayers[c-i-1].BlobSum
+	layers := image.Layers
+	if image.SchemaVersion == 1 {
+		layers = image.FsLayers
+	}
+
+	c := len(layers)
+
+	for i := range layers {
+
+		l := layers[c-i-1].BlobSum
+
+		if image.SchemaVersion != 1 {
+			l = layers[c-i-1].Digest
+		}
+
 		lShort := xstrings.Substr(l, 0, 12)
 
 		if a, err := clair.Analyse(l); err != nil {

@@ -77,12 +77,21 @@ func (image *Image) parseManifest(body []byte) error {
 func (image *Image) uniqueLayers() {
 	encountered := map[Layer]bool{}
 	result := []Layer{}
-
-	for index := range image.FsLayers {
-		if encountered[image.FsLayers[index]] != true {
-			encountered[image.FsLayers[index]] = true
-			result = append(result, image.FsLayers[index])
+	if image.SchemaVersion == 1 {
+		for index := range image.FsLayers {
+			if encountered[image.FsLayers[index]] != true {
+				encountered[image.FsLayers[index]] = true
+				result = append(result, image.FsLayers[index])
+			}
 		}
+		image.FsLayers = result
+	} else {
+		for index := range image.Layers {
+			if encountered[image.Layers[index]] != true {
+				encountered[image.Layers[index]] = true
+				result = append(result, image.Layers[index])
+			}
+		}
+		image.Layers = result
 	}
-	image.FsLayers = result
 }

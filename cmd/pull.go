@@ -32,6 +32,13 @@ Image: {{.String}}
  {{end}}
 `
 
+const pullTplt_v2 = `
+Image: {{.String}}
+ {{.Layers | len}} layers found
+ {{range .Layers}} ➜ {{.Digest}}
+ {{end}}
+`
+
 // pingCmd represents the ping command
 var pullCmd = &cobra.Command{
 	Use:   "pull IMAGE",
@@ -50,7 +57,11 @@ var pullCmd = &cobra.Command{
 			logrus.Fatalf("pulling image %v: %v", args[0], err)
 		}
 
-		err = template.Must(template.New("pull").Parse(pullTplt)).Execute(os.Stdout, image)
+		if image.SchemaVersion == 1 {
+			err = template.Must(template.New("pull").Parse(pullTplt)).Execute(os.Stdout, image)
+		} else {
+			err = template.Must(template.New("pull").Parse(pullTplt_v2)).Execute(os.Stdout, image)
+		}
 		if err != nil {
 			fmt.Println(xerrors.InternalError)
 			logrus.Fatalf("rendering image: %v", err)
