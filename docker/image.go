@@ -6,22 +6,28 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/zendesk/hyperclair/xerrors"
 	"github.com/spf13/viper"
+	"github.com/zendesk/hyperclair/xerrors"
 )
 
 //Image represent Image Manifest from Docker image, including the registry URL
+
 type Image struct {
-	Name     string
-	Tag      string
-	Registry string
-	FsLayers []Layer
+	Name          string
+	Tag           string
+	Registry      string
+	SchemaVersion int
+	FsLayers      []Layer
+	Layers        []Layer
 }
 
-//Layer represent the digest of a image layer
+// schema v1 layer represent the digest of a image layer
 type Layer struct {
-	BlobSum string
-	History string
+	BlobSum   string
+	History   string
+	MediaType string
+	Size      int
+	Digest    string
 }
 
 const dockerImageRegex = "^(?:([^/]+)/)?(?:(.+)/)*([^@:/]+)(?:[@:](.+))?"

@@ -14,7 +14,11 @@ import (
 
 //Push image to Clair for analysis
 func Push(image Image) error {
+
 	layerCount := len(image.FsLayers)
+	if image.SchemaVersion != 1 {
+		layerCount = len(image.Layers)
+	}
 
 	parentID := ""
 
@@ -31,14 +35,26 @@ func Push(image Image) error {
 		logrus.Infof("using %v as local url", hURL)
 	}
 
-	for index, layer := range image.FsLayers {
+	layers := image.Layers
+	if image.SchemaVersion == 1 {
+		layers = image.FsLayers
+	}
+
+	for index, layer := range layers {
 		lUID := xstrings.Substr(layer.BlobSum, 0, 12)
+		digest := layer.BlobSum
+
+		if image.SchemaVersion != 1 {
+			lUID = xstrings.Substr(layer.Digest, 0, 12)
+			digest = layer.Digest
+		}
+
 		logrus.Infof("Pushing Layer %d/%d [%v]", index+1, layerCount, lUID)
 
-		database.InsertRegistryMapping(layer.BlobSum, image.Registry)
+		database.InsertRegistryMapping(digest, image.Registry)
 		payload := v1.LayerEnvelope{Layer: &v1.Layer{
-			Name:       layer.BlobSum,
-			Path:       image.BlobsURI(layer.BlobSum),
+			Name:       digest,
+			Path:       image.BlobsURI(digest),
 			ParentName: parentID,
 			Format:     "Docker",
 		}}
