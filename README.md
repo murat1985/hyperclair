@@ -7,6 +7,7 @@ This fork features following functionality:
 - Basic authentication against ECR
 - HTTPS registry support through Insecure flag (flag allows to choose between HTTP/HTTPS).
 - Fixed regular expression for docker image. Now it is possible to have image like: path1/path2/../myimagename
+- Support Docker registry API schema v1 and v2 for manifests
 
 For further information please refer to the conversation 
 with authors of hyperclair in this PR https://github.com/wemanity-belgium/hyperclair/pull/90 
